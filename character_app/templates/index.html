@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>D&D Character Sheet</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div id='wrapper'>
+        <div id = 'header'>
+            <h1>Welcome To D&D Character Sheet!</h1>
+        </div>
+        <div id= main>
+        <div id = 'register'>
+            <h3>Register</h3>
+            <form action='/register' method='POST'>
+                {% csrf_token %}
+                <label for='first_name'>First Name</label>
+                <input type='text' name='first_name'>
+                <label for='last_name'>Last Name</label>
+                <input type='text' name='last_name'>
+                <label for='email'>Email</label>
+                <input type='text' name='email'>
+                <label for='password'>Password</label>
+                <input type='password' name='password'>
+                <label for='confirmpw'>Confirm PW</label>
+                <input type='password' name='confirmpw'>
+                <button type='submit'class='btn btn-dark'>Register</button>
+            </form>
+        </div>
+        <div id = 'login'>
+            <h3>Login</h3>
+            <form action='/login' method='POST'>
+                {% csrf_token %}
+                <label for="email">Email</label>
+                <input type='text' name='email'>
+                <label for="password">Password</label>
+                <input type="password" name="password">
+                <button type ='submit'class='btn btn-dark'>Login</button>
+            </form>
+        </div>
+        <div id='errors'>
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+    </div>
+</body>

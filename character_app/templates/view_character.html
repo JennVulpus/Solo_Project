@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>D&D Character Sheet</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div id='wrapper'>
+        <div id='header'>
+            <h1>Hello {{user.first_name}}</h1>
+            <a href='/dashboard'>Go Back</a>
+            <a href='/logout'>Logout</a>
+        </div>
+        <div class = 'list-group'>
+            <ul>
+                <li class="list-group-item"><h4>Name:</h4>{{character.name}}</li>
+                <li class="list-group-item"><h4>Class:</h4>{{character.specialty}}</li>
+                <li class="list-group-item"><h4>Race:</h4>{{character.race}}</li>
+                <li class="list-group-item"><h4>Background:</h4>{{character.background}}</li>
+                <li class="list-group-item"><h4>Str:</h4>{{character.strength}}</li>
+                <li class="list-group-item"><h4>Dex:</h4>{{character.dexterity}}</li>
+                <li class="list-group-item"><h4>Con:</h4>{{character.constitution}}</li>
+                <li class="list-group-item"><h4>Int:</h4>{{character.intelligence}}</li>
+                <li class="list-group-item"><h4>Wis:</h4>{{character.wisdom}}</li>
+                <li class="list-group-item"><h4>Cha:</h4>{{character.charisma}}</li>
+                <li class="list-group-item"><h4>Description:</h4>{{character.desc}}</li>
+            </ul>
+        </div>
+    </div>
+</body>

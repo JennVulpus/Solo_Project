@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>D&D Character Sheet</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div id='wrapper'>
+        <div id='header'>
+            <h1>Hello {{user.first_name}}</h1>
+            <a href='/logout'>Logout</a>
+            <form action='/create_campaign'>
+                <button class = 'btn btn-dark'>Make New Campaign</button>
+            </form>
+        </div>
+        <div id = 'user_campaigns' class='table'>
+            <h3>Your Campaign</h3>
+            <table>
+                <th>Name</th>
+                <th>DM</th>
+                <th>Session Date</th>
+                <th>Actions</th>
+                {% for owner in owners %}
+                    <tr>
+                        <td>{{owner.name}}</td>
+                        <td>{{owner.owner.first_name}}</td>
+                        <td>{{owner.session_date}}</td>
+                        <td><a href = '/view_campaign/{{owner.id}}'>View</a> | <a href = '/edit_campaign/{{owner.id}}'>Edit</a> | <a href='/delete_campaign/{{owner.id}}'>Delete</a></td>
+                    </tr>
+                {% endfor %}
+                {% for member in members %}
+                    <tr>
+                        <td>{{member.name}}</td>
+                        <td>{{member.owner}}</td>
+                        <td>{{member.session_date}}</td>
+                        <td><a href = '/view_campaign/{{member.id}}'>View</a> | <a href='/leave_campaign/{{other.id}}'>Leave</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div id='other_campaigns'class = 'table'>
+            <h3>Other Campaigns</h3>
+            <table>
+                <th>Name</th>
+                <th>DM</th>
+                <th>Session Date</th>
+                <th>Actions</th>
+                {% for other in others %}
+                    <tr>
+                        <td>{{other.name}}</td>
+                        <td>{{other.owner}}</td>
+                        <td>{{other.session_date}}</td>
+                        <td><a href = '/join_campaign/{{other.id}}'>Join</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div id='characters' class='table'>
+            <h3>Your Characters</h3>
+            <form action='/create_character'>
+                <button class = 'btn btn-dark'>Make New Character</button>
+            </form>
+            <table>
+                <th>Name</th>
+                <th>Race</th>
+                <th>Class</th>
+                <th>Background</th>
+                <th>Actions</th>
+                {% for character in characters %}
+                    <tr>
+                        <td>{{character.name}}</td>
+                        <td>{{character.race}}</td>
+                        <td>{{character.specialty}}</td>
+                        <td>{{character.background}}</td>
+                        <td><a href='/view_character/{{character.id}}'>View</a> | <a href='/edit_character/{{character.id}}'>Edit</a> | <a href='/delete_character/{{character.id}}'>Delete</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>

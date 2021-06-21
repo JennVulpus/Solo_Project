@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>D&D Character Sheet</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div id='wrapper'>
+        <div id='header'>
+            <h1>Hello {{user.first_name}}</h1>
+            <a href='/dashboard'>Go Back</a>
+            <a href='/logout'>Logout</a>
+        </div>
+        <div id='errors'>
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        <div id = 'create'>
+            <form action='/ToCharacterDatabase' method='POST'>
+                {% csrf_token %}
+                <div class='form-group'>
+                    <label for='name'>Name:</label>
+                    <input type='text' name='name'>
+                </div>
+                <div class='form-group'>
+                    <label for='specialty'>Class:</label>
+                    <select name = 'specialty'>
+                        <option value = 'Barbarian' selected>Barbarian</option>
+                        <option value = 'Bard' >Bard</option>
+                        <option value = 'Cleric'>Cleric</option>
+                        <option value = 'Druid'>Druid</option>
+                        <option value = 'Fighter' >Fighter</option>
+                        <option value = 'Monk' >Monk</option>
+                        <option value = 'Paladin' >Paladin</option>
+                        <option value = 'Ranger' >Ranger</option>
+                        <option value = 'Rogue' >Rogue</option>
+                        <option value = 'Sorcerer' >Sorcerer</option>
+                        <option value = 'Warlock'>Warlock</option>
+                        <option value = 'Wizard'>Wizard</option>
+                    </select>
+                </div>
+                <div class='form-group'>
+                    <label for='race'>Race:</label>
+                    <select name = 'race'>
+                        <option value = 'Dragonborn' selected>Dragonborn</option>
+                        <option value = 'Dwarf' >Dwarf</option>
+                        <option value = 'Elf' >Elf</option>
+                        <option value = 'Half-Elf' >Half-Elf</option>
+                        <option value = 'Halfling' >Halfling</option>
+                        <option value = 'Half-Orc' >Half-Orc</option>
+                        <option value = 'Human' >Human</option>
+                        <option value = 'Tiefling' >Tiefling</option>
+                    </select>
+                </div>
+                <div class='form-group'>
+                    <label for='background'>Background:</label>
+                    <select name = 'background'>
+                        <option value = 'Acolyte' selected>Acolyte</option>
+                        <option value = 'Charlatan' >Charlatan</option>
+                        <option value = 'Criminal' >Criminal</option>
+                        <option value = 'Entertainer' >Entertainer</option>
+                        <option value = 'Folk Hero' >Folk Hero</option>
+                        <option value = 'Guild Artisan' >Guild Artisan</option>
+                        <option value = 'Hermit' >Hermit</option>
+                        <option value = 'Outlander' >Outlander</option>
+                        <option value = 'Noble' >Noble</option>
+                        <option value = 'Sage' >Sage</option>
+                        <option value = 'Sailor' >Sailor</option>
+                        <option value = 'Solider' >Soldier</option>
+                        <option value = 'Urchin' >Urchin</option>
+                    </select>
+                </div>
+                <div class='form-group'>
+                    <label for="strength">Str:</label>
+                    <input type="number" name='strength'>
+                </div>
+                <div class='form-group'>
+                    <label for="dexterity">Dex:</label>
+                    <input type="number" name='dexterity'>
+                </div>
+                <div class='form-group'>
+                    <label for="constitution">Con:</label>
+                    <input type="number" name='constitution'>
+                </div>
+                <div class='form-group'>
+                    <label for="intelligence">Int:</label>
+                    <input type="number" name='intelligence'>
+                </div>
+                <div class='form-group'>
+                    <label for="wisdom">Wis:</label>
+                    <input type="number" name='wisdom'>
+                </div>
+                <div class='form-group'>
+                    <label for="charisma">Cha:</label>
+                    <input type="number" name='charisma'>
+                </div>
+                <div class='form-group'>
+                    <label for="desc">Description:</label>
+                    <textarea name ='desc' cols="20" rows="1"></textarea>
+                </div>
+                <button type=submit class = 'btn btn-dark'>Add Character</button>
+            </form>
+        </div>
+    </div>
+</body>
